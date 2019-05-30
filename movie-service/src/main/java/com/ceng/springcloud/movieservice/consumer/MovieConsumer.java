@@ -1,19 +1,29 @@
 package com.ceng.springcloud.movieservice.consumer;
 
-import com.ceng.springcloud.movieservice.model.User;
-import com.ceng.springcloud.movieservice.processor.UserProcessor;
-import lombok.extern.slf4j.Slf4j;
+import com.ceng.springcloud.movieservice.model.Movie;
+import com.ceng.springcloud.movieservice.processor.MovieProcessor;
+import com.ceng.springcloud.movieservice.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Service;
 
-@EnableBinding(UserProcessor.class)
-@Slf4j
+@EnableBinding(MovieProcessor.class)
+@Service
 public class MovieConsumer {
 
-    @StreamListener(UserProcessor.USER_CREATE_OUTPUT)
-    public void userCreateConsumerAgain(User user) {
-        System.out.println("UserConsumer.userCreateConsumerAgain: " + user.getUsername());
+    @Autowired
+    private MovieService movieService;
+
+    @StreamListener(MovieProcessor.MOVIE_CREATE_INPUT)
+    public void movieCreateConsumer(Movie movie) {
+        System.out.println("MovieConsumer.movieCreateConsumer: " + movie.getName());
+        movieService.saveOrUpdate(movie);
+    }
+
+    @StreamListener(MovieProcessor.MOVIE_UPDATE_INPUT)
+    public void movieUpdateConsumer(Movie movie) {
+        System.out.println("MovieConsumer.movieUpdateConsumer: " + movie.getName());
+        movieService.saveOrUpdate(movie);
     }
 }

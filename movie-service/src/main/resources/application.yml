@@ -2,12 +2,17 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
-          destination: ex.stream.user.in
-          group: user
+        movie_create_input:
+          destination: ex.stream.movie.create.out
           binder: rabbit1
-        output:
-          destination: ex.stream.user.out
+        movie_create_output:
+          destination: ex.stream.movie.create.in
+          binder: rabbit1
+        movie_update_input:
+          destination: ex.stream.movie.update.out
+          binder: rabbit1
+        movie_update_output:
+          destination: ex.stream.movie.update.in
           binder: rabbit1
       binders:
         rabbit1:

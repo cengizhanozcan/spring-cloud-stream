@@ -14,6 +14,18 @@ spring:
         user_update_output:
           destination: ex.stream.user.update.out
           binder: rabbit1
+        movie_create_input:
+          destination: ex.stream.movie.create.in
+          binder: rabbit1
+        movie_create_output:
+          destination: ex.stream.movie.create.out
+          binder: rabbit1
+        movie_update_input:
+          destination: ex.stream.movie.update.in
+          binder: rabbit1
+        movie_update_output:
+          destination: ex.stream.movie.update.out
+          binder: rabbit1
       binders:
         rabbit1:
           type: rabbit

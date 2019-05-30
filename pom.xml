@@ -70,6 +70,7 @@
 
     <modules>
         <module>common-lib</module>
+        <module>dispatcher</module>
         <module>user-service</module>
         <module>order-service</module>
         <module>movie-service</module>

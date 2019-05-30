@@ -3,16 +3,16 @@ spring:
     stream:
       bindings:
         user_create_input:
-          destination: ex.stream.user.create.out
-          binder: rabbit1
-        user_create_output:
           destination: ex.stream.user.create.in
           binder: rabbit1
+        user_create_output:
+          destination: ex.stream.user.create.out
+          binder: rabbit1
         user_update_input:
-          destination: ex.stream.user.update.out
+          destination: ex.stream.user.update.in
           binder: rabbit1
         user_update_output:
-          destination: ex.stream.user.update.in
+          destination: ex.stream.user.update.out
           binder: rabbit1
       binders:
         rabbit1:

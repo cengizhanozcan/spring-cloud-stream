@@ -3,11 +3,11 @@ spring:
     stream:
       bindings:
         input:
-          destination: ex.stream.out
-          group: product
+          destination: ex.stream.user.in
+          group: user
           binder: rabbit1
         output:
-          destination: ex.stream.out2
+          destination: ex.stream.user.out
           binder: rabbit1
       binders:
         rabbit1:
@@ -19,3 +19,7 @@ spring:
                 port: 5672
                 username: guest
                 password: guest
+management:
+  health:
+    binders:
+      enabled: true
